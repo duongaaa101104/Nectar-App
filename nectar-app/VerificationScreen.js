@@ -27,12 +27,18 @@ const VerificationScreen = ({ navigation }) => {
       <TouchableOpacity>
         <Text style={styles.resendText}>Resend Code</Text>
       </TouchableOpacity>
-      <TouchableOpacity 
-        style={styles.nextButton}
-        onPress={() => navigation.navigate('NextScreen')} // Added navigation
-      >
-        <Text style={styles.nextButtonText}>{'>'}</Text>
-      </TouchableOpacity>
+<TouchableOpacity 
+  style={styles.nextButton}
+  onPress={() => {
+    if (code.length === 4) {
+      navigation.navigate('LocationScreen'); // ✅ Chuyển tiếp khi đủ 4 số
+    } else {
+      alert('Please enter a 4-digit code');  // ⚠️ Thông báo nếu chưa đủ
+    }
+  }}
+>
+  <Text style={styles.nextButtonText}>{'>'}</Text>
+</TouchableOpacity>
     </KeyboardAvoidingView>
   );
 };
